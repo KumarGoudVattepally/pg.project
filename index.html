@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    
+      <div>
+        <form>
+          <input type="text" placeholder="Username" /><br /><br />
+          <input type="password" placeholder="Password" id="pass" />
+          <input
+            type="button"
+            value="Show"
+            onclick="isclick()"
+            id="but"
+          /><br /><br />
+          <input type="button" value="LOGIN" />
+          <input type="button" value="Forget Password">
+          <input type="button" value="Sign Up">
+        </form>
+      </div>
+    
+    <script>
+      let passwo = document.getElementById("pass");
+      isclick = () => {
+        if (passwo.type == "password") {
+          passwo.type = "text";
+          but.value = "hide";
+        } else {
+          passwo.type = "password";
+
+          but.value = "show";
+        }
+      };
+    </script>
+  </body>
+</html>
