@@ -3,38 +3,146 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Multi-Page Authentication</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        display: none;
+      }
+      .container.active {
+        display: block;
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      .input-group {
+        margin-bottom: 15px;
+      }
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .toggle-password {
+        cursor: pointer;
+        font-size: 12px;
+        color: #007bff;
+        display: inline-block;
+        margin-top: 5px;
+      }
+      .button-group button,
+      /* .button-group a {
+        padding: 8px 10px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        cursor: pointer;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+      } */
+       .fg
+        {
+        padding: 8px 10px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        cursor: pointer;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+       
+      .button-group a {
+        
+        text-align: center;
+        
+      }
+      .button-group button:hover,
+      .button-group a:hover {
+        opacity: 0.9;
+      }
+    .bg{
+      
+    }
+    </style>
   </head>
   <body>
-    
-      <div>
-        <form>
-          <input type="text" placeholder="Username" /><br /><br />
-          <input type="password" placeholder="Password" id="pass" />
-          <input
-            type="button"
-            value="Show"
-            onclick="isclick()"
-            id="but"
-          /><br /><br />
-          <input type="button" value="LOGIN" />
-          <input type="button" value="Forget Password">
-          <input type="button" value="Sign Up">
-        </form>
+    <!-- Login Page -->
+     <div class="bg">
+    <div id="loginPage" class="container active">
+      <h2>Login</h2>
+      <div class="input-group">
+        <label for="loginUsername">Username</label>
+        <input type="text" id="loginUsername" required />
       </div>
-    
-    <script>
-      let passwo = document.getElementById("pass");
-      isclick = () => {
-        if (passwo.type == "password") {
-          passwo.type = "text";
-          but.value = "hide";
-        } else {
-          passwo.type = "password";
+      <div class="input-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" required />
+        <span class="toggle-password" onclick="togglePassword('loginPassword')"
+          >Show Password</span
+        >
+      </div>
+      <div class="button-group">
+        <button onclick="login()" class="fg">Login</button>
+        <a href="#" onclick="showPage('forgotPasswordPage')"
+          >Forgot Password</a
+        >
+      </div>
+      <div>
+        <p>
+          Don't have an account?
+          <a href="#" onclick="showPage('signupPage')">Sign Up</a>
+        </p>
+      </div>
+    </div>
+  </div>
 
-          but.value = "show";
+    <script>
+      // Function to toggle password visibility
+      function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
+        if (input.type === "password") {
+          input.type = "text";
+        } else {
+          input.type = "password";
         }
-      };
+      }
+
+      function login() {
+        const username = document.getElementById("loginUsername").value;
+        const password = document.getElementById("loginPassword").value;
+        if (username && password) {
+          alert(`Welcome back, ${username}!`);
+        } else {
+          alert("Please enter your username and password.");
+        }
+      }
     </script>
   </body>
 </html>
