@@ -100,9 +100,12 @@
           <input type="text" id="loginUsername" required />
         </div>
         <div class="input-group">
+          
           <label for="password">Password:</label>
-          <input type="password" id="password" /><br><br>
-          <button type="button" id="togglePassword">Show Password</button>
+          <input type="password" id="password" placeholder="Enter password" minlength="6"><br><br>
+          <button id="togglePassword">Show</button>
+        </div>
+        <div id="message"></div>
         </div>
         <div class="button-group">
           <button onclick="login()" class="fg">Login</button>
@@ -120,24 +123,39 @@
     </div>
 
     <script>
-      // Function to toggle password visibility
-      // Select the password input and toggle button
-      const passwordInput = document.getElementById("password");
-      const toggleButton = document.getElementById("togglePassword");
+      // Select elements
+const passwordInput = document.getElementById('password');
+const togglePasswordButton = document.getElementById('togglePassword');
+const messageDiv = document.getElementById('message');
 
-      // Add a click event listener to the toggle button
-      toggleButton.addEventListener("click", () => {
-        // Check the current type of the password input
-        if (passwordInput.type === "password") {
-          // Change to text type to show the password
-          passwordInput.type = "text";
-          toggleButton.textContent = "Hide Password";
-        } else {
-          // Change back to password type to hide it
-          passwordInput.type = "password";
-          toggleButton.textContent = "Show Password";
-        }
-      });
+// Toggle password visibility
+togglePasswordButton.addEventListener('click', () => {
+  const currentType = passwordInput.getAttribute('type');
+  
+  if (currentType === 'password') {
+    passwordInput.setAttribute('type', 'text');
+    togglePasswordButton.textContent = 'Hide';
+  } else {
+    passwordInput.setAttribute('type', 'password');
+    togglePasswordButton.textContent = 'Show';
+  }
+});
+
+// Check password length on input
+passwordInput.addEventListener('input', () => {
+  if (passwordInput.value.length >= 6) {
+    messageDiv.textContent = 'Password having 6 Character';
+    messageDiv.style.color = 'green';
+  } else {
+    messageDiv.textContent = 'Password must be at least 6 characters.';
+    messageDiv.style.color = 'red';
+  }
+});
+
+
+
+      
+      
 
       function login() {
         const username = document.getElementById("loginUsername").value;
